@@ -1,0 +1,18 @@
+# makefile :  2002-03-07.
+
+all : libmy.so
+
+SRC = getdate.c gettime.c
+
+TGT = $(SRC:.c=.o)
+
+$(SRC) : adatetime.h
+	@touch $@
+
+%.o : %.c
+	cc -c $?
+
+# 动态链接库(libmy.so)生成
+libmy.so : $(TGT)
+	cc -s -shared -o $@ $(TGT)
+
