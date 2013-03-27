@@ -6,7 +6,12 @@ http://blog.csdn.net/wwwooowww/article/details/362638
   
   回调函数使用是必要的，在我们想通过一个统一接口实现不同的内容，这时用回掉函数非常合适。
   
-  比如，我们为几个不同的设备分别写了不同的显示函数：void TVshow(); void ComputerShow(); void NoteBookShow()...等等。这是我们想用一个统一的显示函数，我们这时就可以用回掉函数了。void show(void (*ptr)());
+  比如，我们为几个不同的设备分别写了不同的显示函数：void TVshow(); void ComputerShow(); void NoteBookShow()...等等。
+
+  这是我们想用一个统一的显示函数，我们这时就可以用回掉函数了。
+
+  void show(void (*ptr)());
+
   使用时根据所传入的参数不同而调用不同的回调函数。
 
        不同的编程语言可能有不同的语法，下面举一个c语言中回调函数的例子，其中一个回调函数不带参数，另一个回调函数带参数。
