@@ -92,6 +92,13 @@ void accept_callback(int fd,
   bufferevent_enable(client->buf_ev, EV_READ);
 }
 
+
+
+///////////////////////////////////////
+///////////////////////////////////////
+///////////////////////////////////////
+
+
 int main(int argc,
          char **argv)
 {
@@ -100,7 +107,7 @@ int main(int argc,
   struct event accept_event; // 
   int reuse = 1;
 
-  event_init(); // ³õÊ¼»¯libevent¿â
+  event_init(); // ï¿½ï¿½Ê¼ï¿½ï¿½libeventï¿½ï¿½
 
   socketlisten = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -136,16 +143,16 @@ int main(int argc,
              &reuse,
              sizeof(reuse));
 
-  setnonblock(socketlisten); // ÉèÖÃ·Ç×èÈû
+  setnonblock(socketlisten); // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½
 
   event_set(&accept_event,
             socketlisten,
             EV_READ|EV_PERSIST,
             accept_callback,
-            NULL);            // ¸³Öµstruct event½á¹¹
+            NULL);            // ï¿½ï¿½Öµstruct eventï¿½á¹¹
 
   event_add(&accept_event,
-            NULL);              // Ôö¼Óaccept_eventÊÂ¼þµ½ÊÂ¼þ¼à¿Ø³ØÖÐ
+            NULL);              // ï¿½ï¿½ï¿½ï¿½accept_eventï¿½Â¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½
 
   event_dispatch();  
 
