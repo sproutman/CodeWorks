@@ -10,7 +10,7 @@
 #include <unistd.h>
 
 #define SERVER_PORT 8080
-int debug = 0;
+int debug = 0;  // Only define ?
 
 struct client {
   int fd;
@@ -21,9 +21,9 @@ int setnonblock(int fd)
 {
   int flags;
 
-  flags = fcntl(fd, F_GETFL);
+  flags = fcntl(fd, F_GETFL);  //  F_GETFL means get flag
   flags |= O_NONBLOCK;
-  fcntl(fd, F_SETFL, flags);
+  fcntl(fd, F_SETFL, flags);  // Set flag to nonblock ?
 }
 
 void buf_read_callback(struct bufferevent *incoming,
@@ -76,7 +76,7 @@ void accept_callback(int fd,
       return;
     }
 
-  setnonblock(client_fd);
+  setnonblock(client_fd);  // set nonblock  
 
   client = calloc(1, sizeof(*client));
   if (client == NULL)
@@ -97,10 +97,10 @@ int main(int argc,
 {
   int socketlisten;
   struct sockaddr_in addresslisten;
-  struct event accept_event;
+  struct event accept_event; // 
   int reuse = 1;
 
-  event_init();
+  event_init(); // 初始化libevent库
 
   socketlisten = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -136,18 +136,18 @@ int main(int argc,
              &reuse,
              sizeof(reuse));
 
-  setnonblock(socketlisten);
+  setnonblock(socketlisten); // 设置非阻塞
 
   event_set(&accept_event,
             socketlisten,
             EV_READ|EV_PERSIST,
             accept_callback,
-            NULL);
+            NULL);            // 赋值struct event结构
 
   event_add(&accept_event,
-            NULL);
+            NULL);              // 增加accept_event事件到事件监控池中
 
-  event_dispatch();
+  event_dispatch();  
 
   close(socketlisten);
 
