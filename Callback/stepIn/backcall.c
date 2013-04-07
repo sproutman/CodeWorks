@@ -25,9 +25,18 @@ int download(pNotifyChange notify){
 
 // main entry point
 int main(){
-    pNotifyChange notify = onNotify;
-
+    pNotifyChange notify = onNotify;  
     download(notify);
+
+	// 是否多此一举呢？ 直接 download(onNotify)；	不就结了？！！！
 
     return 0;
 }
+
+
+
+// 毁掉函数的精髓  Main函数中去调用download（）函数，
+// download（）函数以 另外一个函数的指针作为参数，
+// 并在其中对该函数进行调用
+// 常常用typedef 提前定义函数指针
+
